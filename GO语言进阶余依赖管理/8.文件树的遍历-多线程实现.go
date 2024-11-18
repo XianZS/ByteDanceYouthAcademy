@@ -16,7 +16,7 @@ var matches int
 var workerCount = 0
 
 // 最大工人数
-var maxWorkerCount = 32
+var maxWorkerCount = 16
 
 /*
 	创建chan，通过chan交流来实现共享内存
@@ -37,6 +37,9 @@ func main() {
 	waitForWorkers()
 	fmt.Println(matches, "matches")
 	fmt.Println(time.Since(start))
+	close(workerDone)
+	close(searchRequest)
+	close(foundMatch)
 	/*
 		【1】未优化结果:
 			50 matches1
