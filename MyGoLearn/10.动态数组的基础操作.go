@@ -34,4 +34,18 @@ func main() {
 	s := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(s)      // [1 2 3 4 5 6]
 	fmt.Println(s[0:2]) // [1 2]
+
+	/*
+		【5】切片之后的切片数组和原切片数组有什么关系？
+		切片之后的数组，本质上依旧指向原切片数组，更改两者任意其一，另外一个切片数组都会受到影响
+	*/
+	xs := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	newXs := xs[:4]
+	fmt.Println(xs, newXs) // [1 2 3 4 5 6 7 8 9] [2 3 4]
+	newXs[1] = 100
+	fmt.Println(xs, newXs) // [1 2 100 4 5 6 7 8 9] [2 100 4]
+	// 如何避免这种情况的发生？
+	newXs_ := make([]int, 4, 10)
+	copy(newXs_, xs[:4])
+	fmt.Println(newXs_) // [1 100 3 4]
 }
