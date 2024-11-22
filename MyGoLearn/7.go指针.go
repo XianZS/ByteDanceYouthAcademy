@@ -42,4 +42,11 @@ func main() {
 	main1()
 	main2()
 	main3()
+	var number int = 10
+	var p *int
+	p = &number
+	fmt.Println(number)  // 10
+	fmt.Println(&number) // 0xc00000a120
+	fmt.Println(p)       // 0xc00000a120
+	fmt.Println(*p)      // 10
 }
